@@ -1,0 +1,139 @@
+
+\usepackage{graphicx}
+
+
+\usepackage[utf8]{inputenc} %Together with 'spanish' package, allows you to write accents 
+
+%This package allows the use of accents, the parameter 'es-tabla' writes Tabla instead of 'Cuadro', the parameter es-noindentfirst makes that the first line after each section and subsection is not indented
+\usepackage[spanish,activeacute,es-tabla,es-noindentfirst]{babel}
+
+%This package allows you among other things, use as option [H] in tables and figures, which set the object just where you put in the source code.
+\usepackage{float}
+
+%This package allows you to write pseudocode, you should read the docummentation to use it properly 
+\usepackage{algorithm2e}
+
+%Packages to write math
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+%permite el formato de múltiple citación agrupada dentro de los corchetes
+\usepackage{cite} 
+
+\usepackage{times}
+\usepackage{color}
+
+%Package that help to write text that will appear like you write in the final documment
+\usepackage{verbatim}
+
+%This package allows you to configure tables and figures
+\usepackage{caption}
+
+%Package to customize formats to the tables
+\usepackage{booktabs}
+
+%Package to control hiperlinks
+\usepackage[breaklinks=true]{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=blue,
+	citecolor=cyan,
+}
+
+%Package to stablish the margins of the documment
+\usepackage{vmargin}
+
+%A0, A1, ..., A9, B0, B1, ..., B9, C0, ..., C9, USletter, USlegal, and USexecutive
+\setpapersize{A4}
+%\setmarginsrb{hleftmargini}{htopmargini}{hrightmargini}{hbottommargini}%
+%{hheadheighti}{hheadsepi}{hfootheighti}{hfootskipi}
+
+\setmarginsrb{30mm}{25mm}{30mm}{25mm}{6mm}{7mm}{5mm}{15mm}
+
+%También puede utilizar esta sintaxis para establcer los márgenes con el paquete {vmargin}
+%\setmargins{3.0cm}       % margen izquierdo
+%{1.5cm}                        % margen superior
+%{14.5cm}                      % anchura del texto
+%{23.42cm}                    % altura del texto
+%{10pt}                           % altura de los encabezados
+%{1cm}                           % espacio entre el texto y los encabezados
+%{0pt}                             % altura del pie de página
+%{2cm}         
+
+%Estos paquetes se utilian para escribir psudocódigo, sin embargo en estos momentos se está utilizando el paquete {algorithm2e}
+%\usepackage{algpseudocode}
+%\usepackage{algorithmicx}
+%\usepackage{algorithm}
+
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray45}{gray}{.45}
+
+%Packages to write code in various programming languajes, please, see the docummentation 
+\usepackage{listings}
+\usepackage{listingsutf8}
+\lstset{frame=Ltb,
+	framerule=0pt,
+	aboveskip=0.5cm,
+	framextopmargin=3pt,
+	framexbottommargin=3pt,
+	framexleftmargin=0.4cm,
+	framesep=0pt,
+	rulesep=.4pt,
+	backgroundcolor=\color{gray97},
+	rulesepcolor=\color{black},
+	%
+	stringstyle=\ttfamily,
+	showstringspaces = false,
+	basicstyle=\small\ttfamily,
+	commentstyle=\color{blue},
+	keywordstyle=\bfseries,
+	%
+	numbers=left,
+	numbersep=15pt,
+	numberstyle=\tiny,
+	numberfirstline = false,
+	breaklines=true,
+}
+\lstnewenvironment{listing}[1][]
+{\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+
+\lstdefinestyle{consola}
+{basicstyle=\scriptsize\bf\ttfamily,
+	backgroundcolor=\color{gray75},
+}
+\lstdefinestyle{C}
+{language=C,
+}
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+\renewcommand\UrlFont{\color{blue}\rmfamily}
+
+%\renewcommand\Algorithmname{Algoritmo}
+\renewcommand\examplename{Ejemplo}
+\renewcommand\exercisename{Ejercicio}
+\renewcommand\figurename{Fig.}
+\renewcommand\keywordname{{\bf T\'erminos Clave:}}
+\renewcommand\indexname{Index}
+\renewcommand\lemmaname{Lema}
+\renewcommand\contriblistname{Lista de colaboradores}
+\renewcommand\listfigurename{Lista de Figuras}
+\renewcommand\listtablename{Lista of Tablas}
+\renewcommand\mailname{{\it Correspondencia para\/}:}
+\renewcommand\noteaddname{Note added in proof}
+\renewcommand\notename{Nota}
+\renewcommand\partname{Parte}
+\renewcommand\problemname{Problema}
+\renewcommand\proofname{Demostración}
+\renewcommand\propertyname{Propiedad}
+\renewcommand\propositionname{Proposici\'on}
+\renewcommand\questionname{Pregunta}
+\renewcommand\remarkname{Remark}
+\renewcommand\seename{Ver}
+\renewcommand\solutionname{Soluci\'on}
+\renewcommand\theoremname{Teorema}
