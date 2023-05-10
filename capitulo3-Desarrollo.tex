@@ -1,8 +1,7 @@
-
 \documentclass[runningheads]{llncs}
-%
 \usepackage{xcolor}
-\usepackage{listings}  
+\usepackage{listings} 
+\usepackage{graphicx}
 
 \include{preamblelaha}
 \begin{document}
@@ -54,44 +53,111 @@ Algunos de los requerimientos no funcionales que son necesarios para este proyec
     \item \textbf{Integración: } El software debe ser capaz de integrarse con otros sistemas y herramientas utilizados por el club de colportores, como sistemas de contabilidad o de seguimiento de inventario, para garantizar una mayor eficiencia y coordinación en el proceso de colportaje.
 \end{itemize}
 \subsection{Diagramas de Flujo.}
-Los diagramas de flujo son una herramienta importante para visualizar el proceso de gestión de colportaje propuesto. Estos diagramas muestran los pasos necesarios para completar cada tarea en el proceso, lo que permite a los desarrolladores identificar áreas de mejora y optimización. Además, los diagramas de flujo también son útiles para capacitar a los usuarios finales en el uso del software.
+Los diagramas de flujo son una herramienta importante para visualizar el proceso de gestión de colportaje propuesto. Estos muestran las fases necesarios para completar cada tarea en el proceso, lo que permite a los desarrolladores identificar áreas de mejora y optimización. Además, son útiles para capacitar a los usuarios finales en el uso del software.
 
 Cada flujo de la aplicación se describe en los diagramas, con el fin de entender cada proceso a realizar dentro de la aplicación y los pasos a seguir para ejecutar alguna tarea especifica.
 
-Dentro de los principales flujos de la aplicacion, se describen los siguientes:
+Dentro de los principales flujos del software propuesto, se describen los siguientes:
+
 \subsection*{Proceso de Venta}
+Es el proceso principal dentro del sistema. Comprende todo el proceso de realizacion de una venta y la informacion necesaria para su registro (ver Figura \ref{fig1}).
+Esta compuesto tanto por el proceso principal de registro de venta como de algunos subprocesos definidos mas adelante.
+El flujo que se sigue se especifica de la siguiente manera:
+\begin{enumerate}
+    \item Se registra la fecha del pedido
+    \item Selecciona el tipo de venta 
+    \item Se realiza la seleccion del material (Subproceso)
+    \item Se registra la fecha de entrega del material
+    \item Ingresa el costo total de la venta
+    \item Registro del pago inicial o total
+    \item Registro de la informacion del cliente (Subproceso)
+    \item Registrar firma del cliente
+    \item Se obtienen los datos del colportor
+    \item Se emite el recibo de venta
+\end{enumerate}
+%TODO: Cambiar orientacion
 \begin{figure}[H]
 	\centering\captionsetup{width=0.8\textwidth}
 	\includegraphics[width=1\textwidth]{figures/diagramas_de_flujo/Flujo de Registro _ Realización de una venta.png}
-	\caption{Esquema conceptual de la base de datos} \label{fig1}
+	\caption{Diagrama de Flujo de Registro de Ventas} \label{fig1}
 \end{figure}
+
+\subsection*{Proceso de Seleccion de Libros}
+En la Figura \ref{fig2} se observa el flujo del proceso de selección de libros.
+Este se inicia ejecutando una validación para identificar el tipo de transaccion que se esta realizando para llevar a cabo la selección de los libros, ya sea una compra para registrar un credito o una venta a un cliente.
+En base al tipo de transaccion seleccionado se asigna un precio de los materiales a la hora de su seleccion y se muestran en una lista dinamica.
+A partir de aqui, el flujo se desprende en tres elementos para la seleccion: El primero busca un material en especifico, en donde se ingresa el titulo del material deseado y se procede con la seleccion. El segundo realiza la seleccion directamente de la lista de libros que se muestra. El tercero muestra mas informacion sobre los libros como su descripcion, autor, etc.
+Conforme se seleccionan los libros, en la barra superior de la pantalla se vera reflejado el costo acumulativo de los materiales que se seleccionen, con el objetivo de que el colportor tenga una referencia del costo total que podria asignar al pedido. Esto ultimo en caso de que el tipo de transaccion sea una venta.
+Una vez seleccionado el material se concluye el flujo agregando la cantidad a solicitar de cada libro seleccionado.
+\begin{figure}[H]
+	\centering\captionsetup{width=0.8\textwidth}
+	\includegraphics[width=1\textwidth]{figures/diagramas_de_flujo/Flujo de Selección de Material (Libros).png}
+	\caption{Diagrama de Flujo de Selección de Libros} \label{fig2}
+\end{figure}
+
+
 \subsection*{Proceso de Registro de Clientes y Referencias}
+Dentro del flujo de este subproceso esta especificada la informacion que se requiere tanto de los clientes (ver Figura \ref{fig3}) como de las referencias (ver Figura \ref{fig4}) del colportor.
+Si bien, el proceso es similar entre ambos subprocesos, existen algunas validaciones que se ejecutan durante el flujo y registro de informacion.
+
+En el flujo de registro de cliente se valida que al registrarlo sea una referencia o no, ya que si se ha registrado como referencia, unicamente se completa la informacion faltante del cliente. 
+Ademas de validar que la informacion ingresada este completa y no tenga algun error.
+
+Por otro lado, el flujo de registro de referencia, ademas del registro de informacion de la referencia, se valida que aun no haya sido visitado anteriormenete.
+
 \begin{figure}[H]
 	\centering\captionsetup{width=0.8\textwidth}
 	\includegraphics[width=1\textwidth]{figures/diagramas_de_flujo/Flujo de Registro de Cliente.png}
-	\caption{Esquema conceptual de la base de datos} \label{fig2}
+	\caption{Diagrama de Flujo de Registro de Clientes} \label{fig3}
 \end{figure}
 \begin{figure}[H]
 	\centering\captionsetup{width=0.8\textwidth}
 	\includegraphics[width=1\textwidth]{figures/diagramas_de_flujo/Flujo de Registro de Referencias.png}
-	\caption{Esquema conceptual de la base de datos} \label{fig3}
-\end{figure}
-\subsection*{Proceso de Seleccion de Libros}
-\begin{figure}[H]
-	\centering\captionsetup{width=0.8\textwidth}
-	\includegraphics[width=1\textwidth]{figures/diagramas_de_flujo/Flujo de Selección de Material (Libros).png}
-	\caption{Esquema conceptual de la base de datos} \label{fig4}
+	\caption{Diagrama de Flujo de Registro de Referencias} \label{fig4}
 \end{figure}
 
 \subsection{Esquema conceptual y Diseño de la Base de Datos.}
+Dentro del esquema conceptual de la base de datos se especifican aquellos componentes o elementos principales que interactuan con la base de datos.
+La interacción y relacion entre ellos dependera de su funcionalidad, y como podemos observar en la Figura \ref{fig5} se muestra graficamente la interacción entre dichos componentes, la cual se describe de la siguiente manera:
+
+\subsection*{Controlador de Creditos}
+Es el componente de la aplicación que se encarga de gestionar los créditos otorgados a los clientes. Este componente se comunica con el subsistema de gestión de ventas para obtener información sobre las ventas realizadas y con el subsistema de seguridad para autenticar y autorizar las solicitudes de crédito.
+
+También se comunica con el subsistema de pagos, para registrar los pagos de los clientes y actualizar el estado de los créditos. Por último, este componente se comunica con el subsistema de bonificaciones, para aplicar las bonificaciones correspondientes a los clientes.
+
+\subsection*{Subsistema de Seguridad}
+Se encarga de autenticar y autorizar las solicitudes de los usuarios. Este subsistema está compuesto por los siguientes componentes:
+\begin{itemize}
+    \item \textbf{Autenticación de Usuario:}  Este servicio es responsable de autenticar a los usuarios de la aplicación.
+    \item \textbf{Autorización de Usuario:} Es responsable de autorizar las solicitudes de los usuarios de la aplicación.
+\end{itemize}
+
+\subsection*{Subsistema de Pagos}
+Gestiona los pagos de los clientes. Está compuesto por los siguientes componentes:
+\begin{itemize}
+    \item \textbf{Registro de Pago:}  Es responsable de registrar los pagos de los clientes.
+    \item \textbf{Consulta de Pagos:} Es responsable de consultar los pagos realizados por los clientes.
+\end{itemize}
+El subsistema de pagos se comunica con el controlador de créditos para registrar los pagos de los clientes y actualizar el estado de los créditos.
+\subsection*{Subsistema de Bonificaciones}
+Determina el total a recibir en base a las bonificaciones establecidas previamente (21\% por parte de GEMA y 14\% por parte de la Universidad) y respecto a las ventas realizadas por parte del colportor.
+\subsection*{Interfaz de Pedidos}
+Permite a los colportores registrar y gestionar sus pedidos. Esta interfaz está compuesta por los siguientes componentes:
+\begin{itemize}
+    \item \textbf{Formulario de Registro de Pedidos:}  Permite a los colportores registrar sus pedidos.
+    \item \textbf{Lista de Pedidos:} Muestra la lista de pedidos registrados por los colportores.
+\end{itemize}
+La interfaz de pedidos se comunica con el subsistema de gestión de ventas para registrar y gestionar los pedidos de los colportores.
 \begin{figure}[H]
 	\centering\captionsetup{width=0.8\textwidth}
-	\includegraphics[width=1\textwidth]{figures/Diseño_Conceptual.png}
+	\includegraphics[width=0.7\textwidth]{figures/Diseño_Conceptual.png}
 	\caption{Esquema conceptual de la base de datos} \label{fig5}
 \end{figure}
+\subsection*{Diseño de la Base de Datos}
+
 \begin{figure}[H]
 	\centering\captionsetup{width=0.8\textwidth}
-	\includegraphics[width=1\textwidth]{figures/DB Diagram.jpg}
+	\includegraphics[width=0.8\textwidth]{figures/db_diagrams/DB Diagram.jpg}
 	\caption{Diseño de Base de Datos} \label{fig6}
 \end{figure}
 
@@ -157,6 +223,42 @@ Es un patrón de diseño que se utiliza en el desarrollo de software para admini
 \subsubsection*{Elementos Gráficos: }
 El objetivo es que estos elementos tengan un aspecto y funcionalidad coherente y consistente en toda la aplicación. Al utilizar componentes, se ahorra tiempo en el desarrollo, se reduce el número de errores y se aumenta la consistencia visual y de interacción en la aplicación. Además, estos componentes pueden ser mejorados y actualizados de forma centralizada, lo que facilita su mantenimiento y evolución.
 
-Ademas, algunos de estos componentes pueden contener otros componentes dentro y también encapsulan funciones de acción o de estado así como datos en algunos casos como pueden ser campos de texto o botones o en el caso de la barra de navegación que contiene las rutas de la aplicación las cuales sirven para comunicarse dentro de la aplicación.
+Ademas, algunos de estos componentes pueden contener otros componentes dentro y también encapsulan funciones de acción o de estado así como datos en algunos casos como pueden ser campos de texto (ver Figura \ref{fig8}) o botones (ver Figura \ref{fig9}) o en el caso de la barra de navegación que contiene las rutas de la aplicación las cuales sirven para comunicarse dentro de la aplicación (ver Figura \ref{fig7}).
 
+\begin{figure}[H]
+	\centering\captionsetup{width=0.8\textwidth}
+	\includegraphics[width=0.6\textwidth]{figures/graphic_components/barra_navegacion.png}
+	\caption{Barra de Navegación} \label{fig7}
+\end{figure}
+\begin{figure}[H]
+	\centering\captionsetup{width=0.8\textwidth}
+	\includegraphics[width=0.6\textwidth]{figures/graphic_components/text_fields.png}
+	\caption{Campos de Texto} \label{fig8}
+\end{figure}
+\begin{figure}[H]
+	\centering\captionsetup{width=0.8\textwidth}
+	\includegraphics[width=0.6\textwidth]{figures/graphic_components/button.png}
+	\caption{Botones} \label{fig9}
+\end{figure}
+
+Algo muy importante a resaltar dentro de los componentes y elementos graficos es el tema de la aplicacion, el cual incluye colores y formas de estos elementos.
+La paleta de colores designada para este proyecto (Figura \ref{fig10}) se basa en los colores representativos del club Kerusso, los cuales en su mayoria se encuentras reflejados en su logo.
+\begin{figure}[H]
+	\centering\captionsetup{width=0.8\textwidth}
+	\includegraphics[width=0.6\textwidth]{figures/graphic_components/colors.png}
+	\caption{Paleta de Colores} \label{fig10}
+\end{figure}
+
+\subsubsection*{Interfaces de Datos}
+\subsection*{Reutilizacion a Nivel de Especificaciones y Funciones}
+Las especificaciones definen los requisitos funcionales y no funcionales de la aplicación y pueden ser reutilizadas a través de diferentes etapas del ciclo de vida del software, como el diseño y la implementación.
+En este proyecto se están reutilizando las siguientes funciones:
+\begin{itemize}
+    \item Definición de Cliente en Base a una Referencia
+    \item Selección de Material
+    \item Proceso de Registro de Crédito de Libros y Compras al Contado
+    \item Proceso de Registro de Venta
+    \item Proceso de Validación de Usuario
+\end{itemize}
+Como puede observarse, son procesos que derivan de los requerimientos y que cada uno de estos se reutiliza tanto a nivel de funcionalidad como a nivel de interacción con el usuario, ya que son procesos que dependen de otros o que se establecen a partir de información proporcionada por otras partes de la aplicación o por el usuario y que el resultado dependerá también de información ingresada, por lo que su ejecución estará en constante proceso de reutilizacion.
 \end{document}

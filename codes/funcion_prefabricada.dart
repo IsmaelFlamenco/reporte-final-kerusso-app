@@ -1,3 +1,4 @@
+/*
 {
 	"A new Flutter Screen with a Scaffold": {
 		"prefix": "fl-screen",
@@ -21,3 +22,4 @@
 		"description": "Crea una pantalla con un Scaffold"
 	}
 }
+*/

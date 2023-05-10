@@ -1,3 +1,4 @@
+/*
 CustomTextFormFieldType1(
             wKeyboardType: TextInputType.emailAddress,
             hintName: "Correo Electronico",
@@ -52,3 +53,4 @@ Container(
               ),
             ),
           ),
+*/

@@ -1,3 +1,4 @@
+/*
 Future<String?> createUser(String email, String password) async {
   final Map<String, dynamic> authData = {
     'email': email,
@@ -20,3 +21,4 @@ Future<String?> createUser(String email, String password) async {
     return decodedResp['error']['message'];
   }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 class CustomButtonType1 extends StatelessWidget {
   const CustomButtonType1(
       {super.key,
@@ -32,3 +33,4 @@ class CustomButtonType1 extends StatelessWidget {
     );
   }
 }
+*/
